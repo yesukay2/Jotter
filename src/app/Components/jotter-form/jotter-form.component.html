@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<form [formGroup]="jotterForm" (ngSubmit)="createJotter()">
+  <input
+    type="text"
+    name="title"
+    id="jotter-title"
+    formControlName="title"
+    alt="Jotter title"
+  />
+  <textarea
+    name="content"
+    id="jotter-content"
+    formControlName="content"
+    alt="Jotter content"
+  ></textarea>
+  <button type="submit">Create Jotter</button>
+</form>
