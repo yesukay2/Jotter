@@ -6,5 +6,6 @@
   <button class="archive-btn" (click)="toggleArchive()">
     {{ jotter?.archived ? "Unarchive" : "Archive" }}
   </button>
+  <button (click)="editJot(jotter!.id)">Edit</button>
   <button class="delete-btn" (click)="deleteJotter()">Delete</button>
 </section>
