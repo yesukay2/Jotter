@@ -5,7 +5,7 @@ import { JotterFormPageComponent } from './Pages/jotter-form-page/jotter-form-pa
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'jotters',
     component: JotterListPageComponent,
   },
   {

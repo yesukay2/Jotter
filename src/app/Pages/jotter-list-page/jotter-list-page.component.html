@@ -1,1 +1,7 @@
-<p>jotter-list-page works!</p>
+<!DOCTYPE html>
+<section class="jotter-list">
+  <app-jotter-list-card
+    *ngFor="let jotter of jotterList"
+    [jotter]="jotter"
+  ></app-jotter-list-card>
+</section>

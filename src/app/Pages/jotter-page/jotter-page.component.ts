@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { JotterCardComponent } from '../../Components/jotter-card/jotter-card.component';
 
 @Component({
   selector: 'app-jotter-page',
-  imports: [],
+  imports: [JotterCardComponent],
   templateUrl: './jotter-page.component.html',
-  styleUrl: './jotter-page.component.scss'
+  styleUrl: './jotter-page.component.scss',
 })
-export class JotterPageComponent {
-
-}
+export class JotterPageComponent {}
