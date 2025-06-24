@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<section class="jotter-list-card">
+  <h1>{{ jotter.title }}</h1>
+  <p>{{ jotter.content }}</p>
+
+  <div class="cta-btn">
+    <button>
+      <a [routerLink]="['/jotter/view', jotter.id]">View</a>
+    </button>
+    <button (click)="toggleArchive(jotter.id)">Archive</button>
+  </div>
+</section>

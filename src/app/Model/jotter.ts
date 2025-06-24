@@ -1,5 +1,5 @@
 export interface Jotter {
-  id: number;
+  id: string;
   title: string;
   content: string;
   archived: boolean;

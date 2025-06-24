@@ -20,10 +20,8 @@ export class JotterFormComponent {
     private router: Router
   ) {}
 
-  private id: number = parseInt(uuid());
-
   jotterForm = new FormGroup({
-    id: new FormControl(this.id),
+    id: new FormControl(),
     title: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -37,12 +35,17 @@ export class JotterFormComponent {
     archived: new FormControl(false),
   });
   createJotter(): void {
-    this.jotterService.addNewJotter(this.jotterForm.value as Jotter);
-    this.jotterForm.reset();
+    let id = uuid();
+    this.jotterService.addNewJotter({
+      ...this.jotterForm.value,
+      id: id,
+    } as Jotter);
+    this.jotterForm.get('id')?.setValue(id);
     this.notificationService.showSnackBar(
       'Jotter created successfully',
       'success'
     );
-    this.router.navigate(['jotter/view', this.id]);
+    this.router.navigate(['jotter/view', this.jotterForm.value.id]);
+    this.jotterForm.reset();
   }
 }

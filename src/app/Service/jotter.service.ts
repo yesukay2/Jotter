@@ -11,7 +11,7 @@ export class JotterService {
 
   constructor() {}
 
-  getJotter(id: number): Jotter | undefined {
+  getJotter(id: string): Jotter | undefined {
     return this.jotterListSubject.getValue().find((jotter) => jotter.id === id);
   }
 
@@ -25,29 +25,24 @@ export class JotterService {
   updateJotter(jotter: Jotter): void {
     const jotterList = this.jotterListSubject.getValue();
     const updatedList = jotterList.map((_jotter) => {
-      if (jotter.id === _jotter.id) {
+      if (jotter.id == _jotter.id) {
         return jotter;
       } else {
         return _jotter;
       }
     });
 
-    this.jotterListSubject.next(jotterList);
+    this.jotterListSubject.next(updatedList);
   }
 
-  ToggleArchiveJotter(id: number): void {
+  ToggleArchiveJotter(id: string): void {
     const jotterList = this.jotterListSubject.getValue();
-    const updatedList = jotterList.map((jotter) => {
-      if (jotter.id === id) {
-        return { ...jotter, archived: !jotter.archived };
-      } else {
-        return jotter;
-      }
-    });
-    this.jotterListSubject.next(jotterList);
+    const updatedList = jotterList.map((jotter) =>
+      jotter.id === id ? { ...jotter, archived: !jotter.archived } : jotter
+    );
+    this.jotterListSubject.next(updatedList);
   }
-
-  deleteJotter(id: number): void {
+  deleteJotter(id: string): void {
     const jotterList = this.jotterListSubject.getValue();
     const updatedList = jotterList.filter((jotter) => jotter.id != id);
     this.jotterListSubject.next(updatedList);

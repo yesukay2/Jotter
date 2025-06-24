@@ -1,1 +1,10 @@
-<p>jotter-card works!</p>
+<!DOCTYPE html>
+<section class="jotter-card">
+  <h1>{{ jotter?.title }}</h1>
+  <p>{{ jotter?.content }}</p>
+
+  <button class="archive-btn" (click)="toggleArchive()">
+    {{ jotter?.archived ? "Unarchive" : "Archive" }}
+  </button>
+  <button class="delete-btn" (click)="deleteJotter()">Delete</button>
+</section>
