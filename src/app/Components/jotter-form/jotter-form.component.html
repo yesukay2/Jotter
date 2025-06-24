@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <form [formGroup]="jotterForm" (ngSubmit)="createJotter()">
+  <div class="back-btn" (click)="goBack()">Cancel</div>
   <input
     type="text"
     name="title"
@@ -13,5 +14,5 @@
     formControlName="content"
     alt="Jotter content"
   ></textarea>
-  <button type="submit">Create Jotter</button>
+  <button type="submit">{{ isEditMode ? "Update Jot" : "Add Jot" }}</button>
 </form>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JotterService } from '../../Service/jotter.service';
 import { Jotter } from '../../Model/jotter';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../Service/notification.service';
 import { Observable } from 'rxjs';
 
@@ -15,6 +15,7 @@ export class JotterCardComponent implements OnInit {
   constructor(
     private jotterService: JotterService,
     private route: ActivatedRoute,
+    private router: Router,
     private notificationService: NotificationService
   ) {}
 
@@ -40,6 +41,9 @@ export class JotterCardComponent implements OnInit {
     );
   }
 
+  editJot(id: string) {
+    this.router.navigate(['/jotter/edit-jotter/', id]);
+  }
   deleteJotter() {
     this.jotterService.deleteJotter(this.jotter!.id);
   }
