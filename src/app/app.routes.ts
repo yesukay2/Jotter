@@ -8,7 +8,7 @@ import { routeGuardGuard } from './Guard/route-guard.guard';
 export const routes: Routes = [
   {
     path: '',
-    component: LoginPageComponent,
+    loadComponent: () => LoginPageComponent,
   },
   {
     path: 'jotters/',
