@@ -4,6 +4,8 @@ import { JotterPageComponent } from './Pages/jotter-page/jotter-page.component';
 import { JotterFormPageComponent } from './Pages/jotter-form-page/jotter-form-page.component';
 
 import { routeGuardGuard } from './Guard/route-guard.guard';
+import { ArchivedPageComponent } from './Pages/archived-page/archived-page.component';
+import { ConfirmDeleteComponent } from './Pages/confirm-delete/confirm-delete.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +34,15 @@ export const routes: Routes = [
     path: 'jotter/edit-jotter/:id',
     component: JotterFormPageComponent,
     canActivate: [routeGuardGuard],
+  },
+  {
+    path: 'archived',
+    component: ArchivedPageComponent,
+    canActivate: [routeGuardGuard],
+  },
+  {
+    path: 'jotter/edit-jotter/confirm-delete/:id',
+    component: ConfirmDeleteComponent,
   },
   {
     path: '**',

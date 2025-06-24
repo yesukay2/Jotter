@@ -7,6 +7,8 @@
     <button>
       <a [routerLink]="['/jotter/view', jotter.id]">View</a>
     </button>
-    <button (click)="toggleArchive(jotter.id)">Archive</button>
+    <button (click)="toggleArchive(jotter.id)">
+      {{ jotter.archived ? "Unarchive" : "Archive" }}
+    </button>
   </div>
 </section>

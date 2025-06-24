@@ -44,7 +44,7 @@ export class JotterCardComponent implements OnInit {
   editJot(id: string) {
     this.router.navigate(['/jotter/edit-jotter/', id]);
   }
-  deleteJotter() {
-    this.jotterService.deleteJotter(this.jotter!.id);
+  deleteJotter(id: string) {
+    this.router.navigate(['/jotter/edit-jotter/confirm-delete', id]);
   }
 }
