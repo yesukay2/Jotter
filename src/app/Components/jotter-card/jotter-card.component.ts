@@ -4,10 +4,11 @@ import { Jotter } from '../../Model/jotter';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../Service/notification.service';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-jotter-card',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './jotter-card.component.html',
   styleUrl: './jotter-card.component.scss',
 })
@@ -44,7 +45,7 @@ export class JotterCardComponent implements OnInit {
   editJot(id: string) {
     this.router.navigate(['/jotter/edit-jotter/', id]);
   }
-  deleteJotter() {
-    this.jotterService.deleteJotter(this.jotter!.id);
+  deleteJotter(id: string) {
+    this.router.navigate(['/jotter/edit-jotter/confirm-delete', id]);
   }
 }

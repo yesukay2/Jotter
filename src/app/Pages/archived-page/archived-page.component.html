@@ -1,8 +1,8 @@
 <app-search-bar (searchEvent)="handleSearch($event)"></app-search-bar>
 <section class="jotter-list">
-  <ng-container *ngIf="jotterList.length > 0; else emptyJotter">
+  <ng-container *ngIf="jotters.length > 0; else emptyJotter">
     <app-jotter-list-card
-      *ngFor="let jotter of jotterList"
+      *ngFor="let jotter of jotters"
       [jotter]="jotter"
     ></app-jotter-list-card>
   </ng-container>

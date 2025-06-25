@@ -1,6 +1,36 @@
-<section class="navbar">
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h2>Jotter</h2>
+  </div>
+
   <nav>
-    <a [routerLink]="['/jotters']">Jotters</a>
-    <a [routerLink]="['/jotter/new-jotter']">Add Jot</a>
+    <a
+      [routerLink]="['/jotters']"
+      routerLinkActive="active"
+      (click)="unfilteredState()"
+    >
+      <i class="icon">📝</i>
+      <span class="nav-title">All Jots</span>
+      <span class="count">{{ jotterCount ?? 0 }}</span>
+    </a>
+
+    <a [routerLink]="['/archived']" routerLinkActive="active">
+      <i class="icon">📦</i>
+      <span class="nav-title">Archived</span>
+      <span class="count">{{ archivedCount ?? 0 }}</span>
+    </a>
+
+    <a [routerLink]="['/jotter/new-jotter']">
+      <i class="icon plus-icon">+</i>
+      <span class="nav-title">Add New Jot</span>
+    </a>
   </nav>
-</section>
+
+  <div class="filters">
+    <h3>Filter by Tag</h3>
+    <div *ngFor="let tag of tags" class="tag-filter" (click)="filterByTag(tag)">
+      <span>#{{ tag }}</span>
+      <span class="count">{{ getTagCount(tag) }}</span>
+    </div>
+  </div>
+</aside>

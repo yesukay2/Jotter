@@ -1,2 +1,6 @@
-<app-navbar></app-navbar>
-<router-outlet />
+<div class="layout">
+  <app-navbar *ngIf="!isLoginRoute()"></app-navbar>
+  <main class="main-content">
+    <router-outlet />
+  </main>
+</div>

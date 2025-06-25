@@ -1,18 +1,78 @@
-<!DOCTYPE html>
-<form [formGroup]="jotterForm" (ngSubmit)="createJotter()">
-  <div class="back-btn" (click)="goBack()">Cancel</div>
-  <input
-    type="text"
-    name="title"
-    id="jotter-title"
-    formControlName="title"
-    alt="Jotter title"
-  />
-  <textarea
-    name="content"
-    id="jotter-content"
-    formControlName="content"
-    alt="Jotter content"
-  ></textarea>
-  <button type="submit">{{ isEditMode ? "Update Jot" : "Add Jot" }}</button>
+<form [formGroup]="jotterForm" (ngSubmit)="createJotter()" class="jotter-form">
+  <h2 class="form-heading">
+    {{ isEditMode ? "Update Your Jot" : "Create a New Jot" }}
+  </h2>
+  <p class="form-description">
+    A jot is a short note or idea you don't want to lose. Fill in the details
+    below to get started.
+  </p>
+
+  <div class="form-group">
+    <label for="jotter-title">Title</label>
+    <input
+      type="text"
+      id="jotter-title"
+      formControlName="title"
+      placeholder="Enter jot title"
+    />
+
+    <div
+      class="error-message"
+      *ngIf="jotterForm.get('title')?.touched && jotterForm.get('title')?.errors?.['required']"
+    >
+      Jotter title is required!
+    </div>
+    <div
+      class="error-message"
+      *ngIf="jotterForm.get('title')?.touched && jotterForm.get('title')?.errors?.['minlength']"
+    >
+      Title must be at least 3 characters.
+    </div>
+    <div
+      class="error-message"
+      *ngIf="jotterForm.get('title')?.touched && jotterForm.get('title')?.errors?.['maxlength']"
+    >
+      Title must be no more than 50 characters.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="jotter-content">Content</label>
+    <textarea
+      id="jotter-content"
+      formControlName="content"
+      placeholder="Write your jot here..."
+      rows="6"
+    ></textarea>
+    <div class="helper-text">Share your thoughts or reminders.</div>
+
+    <div
+      class="error-message"
+      *ngIf="jotterForm.get('content')?.touched && jotterForm.get('content')?.errors?.['required']"
+    >
+      Jotter content is required!
+    </div>
+    <div
+      class="error-message"
+      *ngIf="jotterForm.get('content')?.touched && jotterForm.get('content')?.errors?.['minlength']"
+    >
+      Content must be at least 3 characters.
+    </div>
+
+    <label for="jotter-tag">Tag</label>
+    <input
+      name="tag"
+      type="text"
+      formControlName="tag"
+      class="tag-input"
+      placeholder="Add a tag"
+    />
+  </div>
+
+  <div class="form-actions">
+    <button type="submit">
+      {{ isEditMode ? "Update Jot" : "Add Jot" }}
+    </button>
+    <button type="button" class="cancel-btn" (click)="goBack()">Cancel</button>
+  </div>
 </form>
