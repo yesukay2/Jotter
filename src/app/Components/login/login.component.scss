@@ -1,5 +1,6 @@
 @use "variables" as *;
 @use "mixins" as *;
 .login {
-  @include flex-center;
+  // @include flex-center;
+  margin-left: 15rem;
 }
