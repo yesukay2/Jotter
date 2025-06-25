@@ -1,0 +1,41 @@
+@use "variables" as *;
+
+// .layout {
+//   display: flex;
+//   height: 100vh;
+//   overflow: hidden; // prevents sidebar from scrolling
+
+//   .main-content {
+//     flex: 1;
+//     overflow-y: auto; // enables scrolling for the content only
+//     padding: 1.5rem;
+//     background-color: $bg-color;
+//   }
+// }
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+app-navbar {
+  width: 250px;
+  flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: $secondary-color;
+}
+
+.main-content {
+  margin-left: 250px; // must match navbar width
+  padding: 1rem;
+  width: calc(100% - 250px);
+
+  @media (max-width: $breakpoint-tablet) {
+    margin-left: 0;
+    width: 100%;
+  }
+}

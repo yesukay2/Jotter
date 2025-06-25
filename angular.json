@@ -29,7 +29,15 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+
+            "styles": [
+              "src/styles.scss",
+              "src/Styles/_mixins.scss",
+              "src/Styles/_variables.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/Styles"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -89,7 +97,14 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/Styles/_mixins.scss",
+              "src/Styles/_variables.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/Styles"]
+            },
             "scripts": []
           }
         }

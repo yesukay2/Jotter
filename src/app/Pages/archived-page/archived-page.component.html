@@ -1,4 +1,15 @@
-<app-jotter-list-card
-  *ngFor="let jotter of jotters"
-  [jotter]="jotter"
-></app-jotter-list-card>
+<app-search-bar (searchEvent)="handleSearch($event)"></app-search-bar>
+<section class="jotter-list">
+  <ng-container *ngIf="jotters.length > 0; else emptyJotter">
+    <app-jotter-list-card
+      *ngFor="let jotter of jotters"
+      [jotter]="jotter"
+    ></app-jotter-list-card>
+  </ng-container>
+
+  <ng-template #emptyJotter>
+    <div class="empty-jotter-state">
+      No Jotters here... You can Add a new Jot!
+    </div>
+  </ng-template>
+</section>

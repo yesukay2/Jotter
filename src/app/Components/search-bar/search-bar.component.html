@@ -1,0 +1,7 @@
+<input
+  class="search-bar"
+  type="text"
+  [(ngModel)]="searchterm"
+  (ngModelChange)="emitSearchChange($event)"
+  placeholder="Search your jots..."
+/>

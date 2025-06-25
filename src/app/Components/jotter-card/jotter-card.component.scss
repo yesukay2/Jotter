@@ -1,0 +1,93 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.jotter-card {
+  background-color: #fff;
+  padding: 2rem;
+  margin: 2rem auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  color: $font-color;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $secondary-color;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: $text-muted;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    button {
+      @include button-style;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        width: 1.1rem;
+        height: 1.1rem;
+        fill: white;
+      }
+    }
+
+    .archive-btn {
+      background-color: $secondary-color;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+
+    .delete-btn {
+      background-color: $error-color;
+
+      svg {
+        fill: white;
+      }
+
+      &:hover {
+        background-color: darken($error-color, 10%);
+      }
+    }
+
+    .edit-btn {
+      background-color: lighten($primary-color, 5%);
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 1.5rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -1,13 +1,34 @@
-<!DOCTYPE html>
 <section class="jotter-list-card">
+  <p>{{ jotter?.createdAt | date : "dd MMM, yyyy" }}</p>
+
   <h1>{{ jotter.title }}</h1>
   <p>{{ jotter.content }}</p>
 
   <div class="cta-btn">
-    <button>
+    <button class="view-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M12 6a9.77 9.77 0 0 0-10
+             6 9.77 9.77 0 0 0 10
+             6 9.77 9.77 0 0 0 10-6
+             9.77 9.77 0 0 0-10-6zm0
+             10a4 4 0 1 1 4-4 4.005
+             4.005 0 0 1-4 4zm0-6a2
+             2 0 1 0 2 2 2.006 2.006 0
+             0 0-2-2z"
+        />
+      </svg>
       <a [routerLink]="['/jotter/view', jotter.id]">View</a>
     </button>
-    <button (click)="toggleArchive(jotter.id)">
+
+    <button class="archive-btn" (click)="toggleArchive(jotter.id)">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path
+          d="M20 6H4v12a2 2 0 0 0 2
+             2h12a2 2 0 0 0 2-2V6zm-8
+             9l-4-4h3V9h2v2h3l-4 4z"
+        />
+      </svg>
       {{ jotter.archived ? "Unarchive" : "Archive" }}
     </button>
   </div>

@@ -1,4 +1,9 @@
-<h1>Confirm Delete</h1>
+<section class="confirm-delete-container">
+  <h1>Confirm Deletion</h1>
+  <p>This action cannot be undone. Do you really want to delete this jot?</p>
 
-<button (click)="cancel()">Cancel</button>
-<button (click)="confirmDelete()">Delete</button>
+  <div class="action-buttons">
+    <button class="cancel-btn" (click)="cancel()">Cancel</button>
+    <button class="delete-btn" (click)="confirmDelete()">Delete</button>
+  </div>
+</section>

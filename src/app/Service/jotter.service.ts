@@ -8,7 +8,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class JotterService {
   private jotterListSubject = new BehaviorSubject<Jotter[]>([]);
   private jotterList$ = this.jotterListSubject.asObservable();
-
+  private tagFilteredListSubject = new BehaviorSubject<Jotter[]>([]);
+  private tagFilteredList$ = this.tagFilteredListSubject.asObservable();
+  private tagFilterStateSubject = new BehaviorSubject<boolean>(false);
+  protected tagFilterState$ = this.tagFilterStateSubject.asObservable();
   constructor() {}
 
   getJotter(id: string): Jotter | undefined {
@@ -46,5 +49,28 @@ export class JotterService {
     const jotterList = this.jotterListSubject.getValue();
     const updatedList = jotterList.filter((jotter) => jotter.id != id);
     this.jotterListSubject.next(updatedList);
+  }
+
+  filterByTag(tag: string): void {
+    this.tagFilterStateSubject.next(true);
+    const currentJotters: Jotter[] = this.jotterListSubject.getValue();
+    this.tagFilteredListSubject.next(
+      currentJotters.filter((jotter) => jotter.tag === tag)
+    );
+  }
+
+  getFilteredJots(): Observable<Jotter[]> {
+    return this.tagFilteredList$;
+  }
+
+  toggleFilterState() {
+    !this.tagFilterState$;
+  }
+  getTagFilterState(): Observable<boolean> {
+    return this.tagFilterState$;
+  }
+
+  resetTagFilterState() {
+    this.tagFilterStateSubject.next(false);
   }
 }

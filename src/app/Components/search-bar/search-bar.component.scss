@@ -1,0 +1,40 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.search-bar {
+  @include form-element;
+  @include hide-placeholder-on-focus;
+
+  max-width: 400px;
+  margin: 1rem auto;
+  display: block;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    border-color: $primary-color;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+  }
+
+  &:focus {
+    background-color: lighten($bg-color, 5%);
+  }
+
+  &::placeholder {
+    color: $text-muted;
+    font-style: italic;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+.search-bar {
+}

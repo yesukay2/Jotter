@@ -1,0 +1,32 @@
+@use "variables" as *;
+@use "mixins" as *;
+.jotter-list {
+  @include responsive-padding;
+  @include responsive-grid;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: $breakpoint-tablet) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty-jotter-state {
+  @include flex-center;
+  text-align: center;
+  font-size: 1.25rem;
+  color: $text-muted;
+  font-family: $font-family;
+  padding: 2rem;
+  margin-left: 5rem;
+  border: 2px dashed lighten($text-muted, 15%);
+  border-radius: 0.5rem;
+  background-color: lighten($bg-color, 5%);
+  grid-column: 1 / -1;
+}

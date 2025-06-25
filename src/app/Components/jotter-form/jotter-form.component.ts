@@ -8,11 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   selector: 'app-jotter-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './jotter-form.component.html',
   styleUrl: './jotter-form.component.scss',
 })
@@ -36,6 +36,7 @@ export class JotterFormComponent implements OnInit {
       const jot = this.jotterService.getJotter(id);
       !!jot && this.jotterForm.get('title')?.setValue(jot!.title);
       !!jot && this.jotterForm.get('content')?.setValue(jot!.content);
+      !!jot && this.jotterForm.get('tag')?.setValue(jot!.tag);
     }
   }
   jotterForm = new FormGroup({
@@ -48,9 +49,13 @@ export class JotterFormComponent implements OnInit {
     content: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(1000),
+    ]),
+    tag: new FormControl('', [
+      Validators.minLength(2),
+      Validators.maxLength(12),
     ]),
     archived: new FormControl(false),
+    createdAt: new FormControl(),
   });
 
   sanitise() {
@@ -89,6 +94,7 @@ export class JotterFormComponent implements OnInit {
         this.jotterService.addNewJotter({
           ...jot,
           id: id,
+          createdAt: Date.now(),
         } as Jotter);
         this.jotterForm.get('id')?.setValue(id);
         this.notificationService.showSnackBar(

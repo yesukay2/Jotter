@@ -1,0 +1,81 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.jotter-list-card {
+  background-color: #fff;
+  border-left: 4px solid $primary-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: transform 0.2s ease;
+  color: $font-color;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: $secondary-color;
+  }
+
+  p {
+    margin: 0.75rem 0 1.5rem;
+    font-size: 1rem;
+    color: $text-muted;
+  }
+
+  .cta-btn {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    button {
+      @include button-style;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        fill: white;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+      }
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+
+    .archive-btn {
+      background-color: $secondary-color;
+
+      &:hover {
+        background-color: darken($secondary-color, 10%);
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 1rem;
+
+    h1 {
+      font-size: 1.25rem;
+    }
+
+    .cta-btn {
+      flex-direction: column;
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

@@ -3,10 +3,11 @@ import { Jotter } from '../../Model/jotter';
 import { RouterLink } from '@angular/router';
 import { JotterService } from '../../Service/jotter.service';
 import { NotificationService } from '../../Service/notification.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-jotter-list-card',
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './jotter-list-card.component.html',
   styleUrl: './jotter-list-card.component.scss',
 })
@@ -20,7 +21,6 @@ export class JotterListCardComponent {
 
   toggleArchive(id: string) {
     this.jotterService.ToggleArchiveJotter(id);
-    console.log(this.jotterService.getJotter(id)?.archived);
     this.notificationService.showSnackBar(
       this.jotterService.getJotter(id)?.archived
         ? 'Archived Jotter'

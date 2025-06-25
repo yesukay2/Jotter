@@ -4,10 +4,11 @@ import { Jotter } from '../../Model/jotter';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../../Service/notification.service';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-jotter-card',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './jotter-card.component.html',
   styleUrl: './jotter-card.component.scss',
 })

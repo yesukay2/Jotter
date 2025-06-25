@@ -1,0 +1,73 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.confirm-delete-container {
+  @include flex-center;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  h1 {
+    font-size: 2rem;
+    color: $error-color;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: $text-muted;
+    margin-bottom: 2rem;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+
+    button {
+      @include button-style;
+      min-width: 120px;
+      font-weight: 500;
+
+      &.cancel-btn {
+        background-color: transparent;
+        color: $font-color;
+        border: 1px solid #ccc;
+
+        &:hover {
+          background-color: $bg-color;
+        }
+      }
+
+      &.delete-btn {
+        background-color: $error-color;
+
+        &:hover {
+          background-color: darken($error-color, 10%);
+        }
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 1.5rem;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
