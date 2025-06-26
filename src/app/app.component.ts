@@ -12,6 +12,13 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   constructor(private route: Router) {}
   isLoginRoute() {
-    return this.route.url === '/' || this.route.url === '/#/factor-one';
+    return (
+      this.route.url ===
+        'https://jotter-8uzth5spy-yesus-projects-e758688f.vercel.app/#/factor-one' ||
+      this.route.url ===
+        'https://jotter-8uzth5spy-yesus-projects-e758688f.vercel.app/#/factor-two' ||
+      this.route.url ===
+        'https://jotter-8uzth5spy-yesus-projects-e758688f.vercel.app/#/'
+    );
   }
 }
