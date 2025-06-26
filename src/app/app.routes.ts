@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { JotterListPageComponent } from './Pages/jotter-list-page/jotter-list-page.component';
+// import { JotterListPageComponent } from './Pages/jotter-list-page/jotter-list-page.component';
 import { JotterPageComponent } from './Pages/jotter-page/jotter-page.component';
 import { JotterFormPageComponent } from './Pages/jotter-form-page/jotter-form-page.component';
 
@@ -17,37 +17,57 @@ export const routes: Routes = [
   },
   {
     path: 'jotters',
-    component: JotterListPageComponent,
+    loadComponent: () =>
+      import('./Pages/jotter-list-page/jotter-list-page.component').then(
+        (module) => module.JotterListPageComponent
+      ),
     canActivate: [routeGuardGuard],
   },
   {
     path: 'jotter/view/:id',
-    component: JotterPageComponent,
+    loadComponent: () =>
+      import('./Pages/jotter-page/jotter-page.component').then(
+        (module) => module.JotterPageComponent
+      ),
     canActivate: [routeGuardGuard],
   },
   {
     path: 'jotter/new-jotter',
-    component: JotterFormPageComponent,
+    loadComponent: () =>
+      import('./Pages/jotter-form-page/jotter-form-page.component').then(
+        (module) => module.JotterFormPageComponent
+      ),
     canActivate: [routeGuardGuard],
   },
   {
     path: 'jotter/edit-jotter/:id',
-    component: JotterFormPageComponent,
+    loadComponent: () =>
+      import('./Pages/jotter-form-page/jotter-form-page.component').then(
+        (module) => module.JotterFormPageComponent
+      ),
     canActivate: [routeGuardGuard],
   },
   {
     path: 'archived',
-    component: ArchivedPageComponent,
+    loadComponent: () =>
+      import('./Pages/archived-page/archived-page.component').then(
+        (module) => module.ArchivedPageComponent
+      ),
     canActivate: [routeGuardGuard],
   },
   {
     path: 'jotter/edit-jotter/confirm-delete/:id',
-    component: ConfirmDeleteComponent,
+    loadComponent: () =>
+      import('./Pages/confirm-delete/confirm-delete.component').then(
+        (module) => module.ConfirmDeleteComponent
+      ),
   },
   {
     path: '**',
-    component: JotterListPageComponent,
+    loadComponent: () =>
+      import('./Pages/wildcard/wildcard.component').then(
+        (module) => module.WildcardComponent
+      ),
     pathMatch: 'full',
-    canActivate: [routeGuardGuard],
   },
 ];
