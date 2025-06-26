@@ -69,6 +69,5 @@ export const routes: Routes = [
         (module) => module.WildcardComponent
       ),
     pathMatch: 'full',
-    canActivate: [routeGuardGuard],
   },
 ];
