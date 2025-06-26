@@ -184,12 +184,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // Important: Wait a bit to make sure DOM is fully rendered
+    // Defer Clerk mounting to ensure the DOM element is rendered
     setTimeout(() => {
-      if (this.userRef?.nativeElement) {
-        this.clerkService.mountUserProfile(this.userRef.nativeElement);
+      const userElement = this.userRef?.nativeElement;
+      if (userElement) {
+        this.clerkService.mountUserProfile(userElement);
+      } else {
+        console.error('UserRef DOM element not found for Clerk!');
       }
-    }, 0);
+    }, 0); // delay by a tick to allow DOM paint
   }
 
   toggleMenu() {
