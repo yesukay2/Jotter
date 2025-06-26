@@ -1,14 +1,141 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Sevillana&display=swap");
+
 body {
   padding: 0;
   margin: 0;
-}
+  font-family: $font-family;
+  background-color: $bg-color;
+  color: $font-color;
+  transition: font-family 0.3s ease-in-out;
 
-.error-snackbar {
-  background-color: red;
-  color: white;
-}
+  // Default theme styles
+  a {
+    color: $primary-color;
+  }
 
-.success-snackbar {
-  background-color: green;
-  color: white;
+  .sidebar a:focus {
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+  }
+
+  //  Dark Theme
+  &.dark {
+    background-color: $dark-bg;
+    color: $dark-font;
+
+    .search-bar {
+      background-color: black;
+      color: white;
+
+      &:focus {
+        background-color: lighten($color: #000000, $amount: 10);
+      }
+    }
+
+    label {
+      color: lighten($color: grey, $amount: 10);
+    }
+
+    #jotter-title,
+    #jotter-content,
+    #input-tag {
+      background-color: $dark-bg;
+      color: $dark-font;
+    }
+
+    .empty-jotter-state {
+      background-color: black;
+      color: white;
+    }
+
+    .sidebar {
+      background-color: darken($dark-bg, 5%);
+    }
+
+    .sidebar a:focus {
+      box-shadow: 0 0 0 3px rgba(white, 0.2);
+    }
+
+    .error-snackbar {
+      background-color: darken($error-color, 10%);
+      color: $dark-font;
+    }
+
+    .success-snackbar {
+      background-color: darken(green, 10%);
+      color: $dark-font;
+    }
+
+    .jotter-card,
+    .jotter-list-card {
+      background-color: lighten(rgba($dark-bg, 0.3), 50);
+    }
+
+    .confirm-delete-container {
+      background-color: lighten(rgba($dark-bg, 0.3), 50);
+
+      &.cancel-btn {
+        background-color: lighten($color: red, $amount: 10) !important;
+      }
+    }
+  }
+
+  //  Orange Theme
+  &.pink {
+    background-color: $pink-bg;
+    color: $secondary-color;
+
+    a {
+      color: $pink-primary;
+    }
+
+    .empty-jotter-state {
+      background-color: rgba($pink-primary, 0.3);
+    }
+
+    input,
+    textarea {
+      background-color: rgba($pink-bg, 0.3);
+      color: lighten($primary-color, 2);
+    }
+
+    .sidebar {
+      background-color: $pink-primary;
+      color: white;
+    }
+
+    .sidebar a:focus {
+      box-shadow: 0 0 0 3px rgba($pink-accent, 0.3);
+    }
+
+    .error-snackbar {
+      background-color: $pink-accent;
+      color: white;
+    }
+
+    .success-snackbar {
+      background-color: $pink-primary;
+      color: black;
+    }
+
+    .jotter-card,
+    .jotter-list-card {
+      background-color: rgba($pink-bg, 0.3);
+    }
+  }
+
+  // Font Styles
+  &.font-sans-serif {
+    font-family: "Sans", sans-serif;
+  }
+
+  &.font-serif {
+    font-family: "Serif", serif;
+  }
+
+  &.font-monospace {
+    font-family: "Monospace", monospace;
+  }
 }

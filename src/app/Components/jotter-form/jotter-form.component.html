@@ -8,7 +8,7 @@
   </p>
 
   <div class="form-group">
-    <label for="jotter-title">Title</label>
+    <label for="jotter-title" aria-label="Jotter Title">Title</label>
     <input
       type="text"
       id="jotter-title"
@@ -18,18 +18,21 @@
 
     <div
       class="error-message"
+      aria-errormessage="Jotter title is required!"
       *ngIf="jotterForm.get('title')?.touched && jotterForm.get('title')?.errors?.['required']"
     >
       Jotter title is required!
     </div>
     <div
       class="error-message"
+      aria-errormessage=" Title must be at least 3 characters."
       *ngIf="jotterForm.get('title')?.touched && jotterForm.get('title')?.errors?.['minlength']"
     >
       Title must be at least 3 characters.
     </div>
     <div
       class="error-message"
+      aria-errormessage="Title must be no more than 50 characters."
       *ngIf="jotterForm.get('title')?.touched && jotterForm.get('title')?.errors?.['maxlength']"
     >
       Title must be no more than 50 characters.
@@ -37,7 +40,7 @@
   </div>
 
   <div class="form-group">
-    <label for="jotter-content">Content</label>
+    <label for="jotter-content" aria-label="Jotter Content">Content</label>
     <textarea
       id="jotter-content"
       formControlName="content"
@@ -48,21 +51,25 @@
 
     <div
       class="error-message"
+      aria-errormessage="Jotter content is required!"
       *ngIf="jotterForm.get('content')?.touched && jotterForm.get('content')?.errors?.['required']"
     >
       Jotter content is required!
     </div>
     <div
       class="error-message"
+      aria-errormessage="Content must be at least 3 characters."
       *ngIf="jotterForm.get('content')?.touched && jotterForm.get('content')?.errors?.['minlength']"
     >
       Content must be at least 3 characters.
     </div>
 
-    <label for="jotter-tag">Tag</label>
+    <label for="jotter-tag" aria-label="Tag" id="tag-label">Tag</label>
     <input
       name="tag"
       type="text"
+      id="input-tag"
+      aria-details="Add a tag"
       formControlName="tag"
       class="tag-input"
       placeholder="Add a tag"

@@ -8,19 +8,24 @@
       [routerLink]="['/jotters']"
       routerLinkActive="active"
       (click)="unfilteredState()"
+      aria-details="All Jotters"
     >
       <i class="icon">📝</i>
       <span class="nav-title">All Jots</span>
       <span class="count">{{ jotterCount ?? 0 }}</span>
     </a>
 
-    <a [routerLink]="['/archived']" routerLinkActive="active">
+    <a
+      [routerLink]="['/archived']"
+      routerLinkActive="active"
+      aria-details="Archived Jots"
+    >
       <i class="icon">📦</i>
       <span class="nav-title">Archived</span>
       <span class="count">{{ archivedCount ?? 0 }}</span>
     </a>
 
-    <a [routerLink]="['/jotter/new-jotter']">
+    <a [routerLink]="['/jotter/new-jotter']" aria-details="Add New Jotter">
       <i class="icon plus-icon">+</i>
       <span class="nav-title">Add New Jot</span>
     </a>
@@ -28,9 +33,48 @@
 
   <div class="filters">
     <h3>Filter by Tag</h3>
-    <div *ngFor="let tag of tags" class="tag-filter" (click)="filterByTag(tag)">
+    <div
+      *ngFor="let tag of tags"
+      class="tag-filter"
+      (click)="filterByTag(tag)"
+      tabindex="0"
+      aria-label="tag-filter"
+    >
       <span>#{{ tag }}</span>
       <span class="count">{{ getTagCount(tag) }}</span>
+    </div>
+  </div>
+
+  <div id="nav-cta-btn">
+    <div
+      id="user"
+      aria-label="User-icon"
+      aria-details="Manage autentication"
+    ></div>
+    <button
+      id="show-presets"
+      (click)="togglePresets()"
+      aria-label="Preset toggler"
+      #presets
+    >
+      <img src="/preset.png" alt="Preset toggler icon" id="presets-image" />
+    </button>
+  </div>
+  <div class="presets hidden" #presetsMenu>
+    <p class="presets-title">Preset Themes</p>
+    <div class="theme-options">
+      <button id="default-theme" (click)="setDefaultTheme()"></button>
+      <button id="dark-theme" (click)="setDarkTheme()"></button>
+      <button id="pink-theme" (click)="setOrangeTheme()"></button>
+    </div>
+    <div class="font-options">
+      <button id="default-font" (click)="setFont('font-sans-serif')">
+        Sans Serif
+      </button>
+      <button id="serif-font" (click)="setFont('font-serif')">Serif</button>
+      <button id="sans-serif-font" (click)="setFont('font-monospace')">
+        Monospace
+      </button>
     </div>
   </div>
 </aside>

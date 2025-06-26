@@ -32,6 +32,9 @@
       @include form-element;
     }
 
+    #tag-label {
+      margin-top: 1.5rem;
+    }
     .helper-text {
       font-size: 0.85rem;
       color: $text-muted;

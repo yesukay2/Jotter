@@ -1,12 +1,22 @@
 $primary-color: #2a9d8f;
 $secondary-color: #264653;
 $error-color: #e63946;
+
 $bg-color: #f1f1f1;
 $font-color: #333;
-$font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+$font-family: "Montserrat", sans-serif;
 
 $breakpoint-mobile: 480px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
 
 $text-muted: #6c757d;
+
+// Dark Theme
+$dark-bg: #121212;
+$dark-font: #ffffff;
+
+// Pink Theme
+$pink-primary: #ff9aa2;
+$pink-bg: #f8a6ac7c;
+$pink-accent: #df5a65;
