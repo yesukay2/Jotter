@@ -134,7 +134,6 @@
 //     body.classList.add(fontClass);
 //   }
 // }
-
 import {
   Component,
   OnInit,
@@ -185,12 +184,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // Safe mount after DOM is ready
-    if (this.userRef?.nativeElement) {
-      setTimeout(() => {
-        this.clerkService.mountUserProfile(this.userRef!.nativeElement);
-      });
-    }
+    // Important: Wait a bit to make sure DOM is fully rendered
+    setTimeout(() => {
+      if (this.userRef?.nativeElement) {
+        this.clerkService.mountUserProfile(this.userRef.nativeElement);
+      }
+    }, 0);
   }
 
   toggleMenu() {
@@ -218,7 +217,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     this.jotterService.resetTagFilterState();
   }
 
-  // THEME METHODS
   setDefaultTheme() {
     document.body.classList.remove('dark', 'pink');
   }
