@@ -26,9 +26,11 @@ export class ClerkService {
     this.loaded = true;
   }
 
-  mountUserProfile(el: HTMLDivElement) {
-    if (this.clerk.user) {
-      this.clerk.mountUserButton(el);
+  mountUserProfile(targetElement: HTMLElement) {
+    if (window.Clerk && targetElement) {
+      window.Clerk.mountUserButton(targetElement as HTMLDivElement);
+    } else {
+      console.error('Clerk not ready or target element invalid');
     }
   }
 
