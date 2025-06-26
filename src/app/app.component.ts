@@ -12,6 +12,6 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   constructor(private route: Router) {}
   isLoginRoute() {
-    return this.route.url === '/' || '#/factor-one';
+    return this.route.url === '/' || this.route.url === '/#/factor-one';
   }
 }
