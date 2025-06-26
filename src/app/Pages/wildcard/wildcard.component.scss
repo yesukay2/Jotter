@@ -1,0 +1,35 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+.not-found-container {
+  height: 100vh;
+  @include flex-center;
+  background-color: $bg-color;
+  color: $font-color;
+  font-family: $font-family;
+  text-align: center;
+  padding: 2rem;
+
+  .content {
+    @include responsive-padding;
+
+    .error-code {
+      font-size: 6rem;
+      color: $error-color;
+      margin: 0;
+    }
+
+    .message {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+      color: $text-muted;
+    }
+
+    .home-button {
+      @include button-style;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+  }
+}
