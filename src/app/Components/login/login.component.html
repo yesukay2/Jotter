@@ -1,14 +1,14 @@
 <div class="auth-container">
-  <div class="auth-image" [class.hidden]="!isLoginMode">
+  <div class="auth-image">
     <img
       src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2461e477-18f9-486b-bc2a-cab3b16820b9.png"
-      alt="Login Illustration"
+      alt="Auth Illustration"
     />
     <h2>{{ isLoginMode ? "Welcome Back!" : "New Here?" }}</h2>
     <p>
       {{
         isLoginMode
-          ? "Login to access your personalized dashboard and manage your account."
+          ? "Login to access your personalized jotter space and manage your account."
           : "Sign up to unlock all features and create your personalized experience."
       }}
     </p>
@@ -21,7 +21,7 @@
         {{
           isLoginMode
             ? "Enter your details to get started"
-            : "Join us today - it only takes a minute"
+            : "Register for free - it only takes a minute"
         }}
       </p>
     </div>
@@ -43,110 +43,95 @@
       </div>
     </div>
 
-    <!-- Login Form -->
-    <form
-      [formGroup]="loginForm"
-      (ngSubmit)="onLogin()"
-      class="auth-form"
-      [class.hidden]="!isLoginMode"
-    >
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input
-          formControlName="email"
-          type="email"
-          placeholder="Enter your email"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          formControlName="password"
-          type="password"
-          placeholder="Enter your password"
-        />
-      </div>
-
-      <div class="form-footer">
-        <div class="checkbox-group">
+    <!-- Forms Wrapper -->
+    <div class="form-wrapper">
+      <!-- Login Form -->
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onLogin()"
+        class="auth-form"
+        [class.hidden]="!isLoginMode"
+      >
+        <div class="form-group">
+          <label for="email">Email Address</label>
           <input
-            type="checkbox"
-            id="remember-me"
-            [(ngModel)]="rememberMe"
-            name="rememberMe"
-            [ngModelOptions]="{ standalone: true }"
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
           />
-          <label for="remember-me">Remember me</label>
         </div>
-        <a href="#" class="forgot-link">Forgot password?</a>
-      </div>
 
-      <button type="submit" class="submit-btn">Sign In</button>
-
-      <div class="social-login">
-        <p>or continue with</p>
-        <div class="social-icons">
-          <div class="social-icon"><!-- Google SVG --></div>
-          <div class="social-icon"><!-- Facebook SVG --></div>
-          <div class="social-icon"><!-- Twitter SVG --></div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Enter your password"
+          />
         </div>
-      </div>
-    </form>
 
-    <!-- Register Form -->
-    <form
-      [formGroup]="registerForm"
-      (ngSubmit)="onRegister()"
-      class="auth-form"
-      [class.hidden]="isLoginMode"
-    >
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input
-          formControlName="name"
-          type="text"
-          placeholder="Enter your full name"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input
-          formControlName="email"
-          type="email"
-          placeholder="Enter your email"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          formControlName="password"
-          type="password"
-          placeholder="Create a password"
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
-        <input
-          formControlName="confirmPassword"
-          type="password"
-          placeholder="Confirm your password"
-        />
-      </div>
-
-      <button type="submit" class="submit-btn">Create Account</button>
-
-      <div class="social-login">
-        <p>or continue with</p>
-        <div class="social-icons">
-          <div class="social-icon"><!-- Google SVG --></div>
-          <div class="social-icon"><!-- Facebook SVG --></div>
-          <div class="social-icon"><!-- Twitter SVG --></div>
+        <div class="form-footer">
+          <div class="checkbox-group">
+            <input
+              type="checkbox"
+              id="remember-me"
+              [(ngModel)]="rememberMe"
+              name="rememberMe"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            <label for="remember-me">Remember me</label>
+          </div>
+          <a href="#" class="forgot-link">Forgot password?</a>
         </div>
-      </div>
-    </form>
+
+        <button type="submit" class="submit-btn">Sign In</button>
+      </form>
+
+      <!-- Register Form -->
+      <form
+        [formGroup]="registerForm"
+        (ngSubmit)="onRegister()"
+        class="auth-form"
+        [class.hidden]="isLoginMode"
+      >
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Enter your full name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Create a password"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            formControlName="confirmPassword"
+            type="password"
+            placeholder="Confirm your password"
+          />
+        </div>
+
+        <button type="submit" class="submit-btn">Create Account</button>
+      </form>
+    </div>
   </div>
 </div>
