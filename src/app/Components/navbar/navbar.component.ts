@@ -143,6 +143,7 @@ import {
   Output,
   EventEmitter,
   Input,
+  AfterViewInit,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../Service/auth.service';
@@ -157,7 +158,7 @@ import { ClerkService } from '../../Service/clerk.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent implements OnInit {
   protected userId?: string;
   protected jotterCount?: number;
   protected archivedCount: number = 0;
@@ -170,7 +171,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   @Input() menuOpen: boolean = false;
 
   presetsVisible = false;
-  menuOpen = false;
+  // menuOpen = false;
 
   constructor(
     private authService: AuthService,
