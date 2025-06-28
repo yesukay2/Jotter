@@ -7,6 +7,11 @@
   --transition-speed: 0.3s;
 }
 
+.form-wrapper {
+  position: relative;
+  min-height: 420px; // ensures consistent height for both forms
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -150,6 +155,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 1rem;
 }
 
 .checkbox-group {
@@ -267,15 +273,20 @@ body {
 
 /* Animation for switch between forms */
 .auth-form {
-  transition: all var(--transition-speed) ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity var(--transition-speed) ease,
+    transform var(--transition-speed) ease;
   opacity: 1;
   transform: translateX(0);
+  pointer-events: auto;
 }
 
 .auth-form.hidden {
   opacity: 0;
   transform: translateX(20px);
-  position: absolute;
   pointer-events: none;
 }
 
