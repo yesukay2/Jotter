@@ -1,126 +1,121 @@
-# Jotter - Angular Note-Taking App
+# Angular Project Documentation
 
-Jotter is a fully responsive web-based note-taking application built with Angular. It offers a clean, modern interface for users to create, view, and manage their notes easily and efficiently. The app supports account-based access and includes dynamic UI components for a smooth user experience.
+## Project Description
 
----
+This is a fully responsive Angular-based web application featuring a note-taking system. It allows users to sign up, sign in, and manage personal notes through an intuitive user interface. The project includes form validation, authentication screens, routing, and a component-based architecture.
 
-## 🚀 Project Description
+## Setup & Run Instructions
 
-Jotter allows users to:
+1. **Clone the Repository**
 
-- Register and log in securely
-- Add, edit, and delete notes
-- Search through notes using a built-in search bar
-- Navigate through the app via a responsive sidebar
+   ```bash
+   git clone https://github.com/yesukay2/Jotter.git
+   cd Jotter
+   ```
 
-It's perfect for productivity-focused users looking for a sleek online jotting tool.
+2. **Install Dependencies**
 
----
+   ```bash
+   npm install
+   ```
 
-## ⚙️ Setup & Run Instructions
+3. **Run the Development Server**
 
-### Prerequisites
+   ```bash
+   ng serve
+   ```
 
-- Node.js & npm installed
-- Angular CLI installed (`npm install -g @angular/cli`)
+4. **Build the Project**
+   ```bash
+   ng build
+   ```
 
-### Installation
+## Key Features
 
-```bash
-git clone https://github.com/yesukay2/Jotter.git
-cd jotter
-npm install
-```
+- Authentication system (Login & Registration)
+- Responsive UI with mobile-first design
+- Modular component architecture
+- Form validation using Angular Reactive Forms
+- Animated form transitions
+- Route guards for secure navigation (assumed)
+- Modern styling with SCSS
 
-### Run Development Server
-
-```bash
-ng serve
-```
-
-The app will be available at `http://localhost:4200`.
-
----
-
-## ✨ Key Features
-
-- 🔒 Authentication (Login/Sign Up)
-- 📝 Jotter Card Components for each note
-- 🔍 Search bar to quickly filter notes
-- 📱 Fully responsive layout with sidebar toggle
-- 🎨 Elegant UI using SCSS
-
----
-
-## 🛠️ Technologies Used
+## Technologies Used
 
 - Angular
 - TypeScript
-- SCSS for styling
-- Reactive Forms Module
-- Angular Routing
+- SCSS
+- RxJS
+- Angular CLI
 
----
+## Component Overview
 
-## 🧩 Component Overview
+### `src/index.html`
 
-### `app.component.*`
+Entry point HTML file, setting up the root component.
 
-- Root component
-- Handles layout and routing outlet
+### `src/main.ts`
 
-### `navbar/`
+Bootstrap logic to launch the Angular application.
 
-- `navbar.component.ts`: Sidebar and mobile menu toggle
-- `navbar.component.html`: Navigation links and branding
-- `navbar.component.scss`: Styling for sidebar
+### `src/styles.scss`
 
-### `search-bar/`
+Global stylesheet for theming and layout.
 
-- `search-bar.component.ts`: Emits search input
-- `search-bar.component.html`: Search input box
-- `search-bar.component.scss`: Search bar styles
+### `src/app/app.component.*`
 
-### `jotter-card/`
+The main component that serves as the root for all child components and routes.
 
-- `jotter-card.component.ts`: Displays a single note
-- `jotter-card.component.html`: Jotter content layout
-- `jotter-card.component.scss`: Card UI styling
+### `src/app/app.routes.ts`
 
-### `login/`
+Defines application routes for login, registration, dashboard, etc.
 
-- `login.component.ts`: Login/Register form logic
-- `login.component.html`: Dual mode form (sign in / sign up)
-- `login.component.scss`: Auth screen styles
+### `src/app/app.config.ts`
 
----
+Application-level configuration settings.
 
-## 📂 Folder Structure
+### `src/app/Components/navbar/`
+
+Contains the sidebar and navigation logic:
+
+- `navbar.component.ts`: Navigation logic and toggling
+- `navbar.component.html`: Sidebar layout
+- `navbar.component.scss`: Sidebar styles
+
+### `src/app/pages/login/`
+
+Login and registration logic:
+
+- `login.component.ts`: Handles login/register form logic
+- `login.component.html`: UI layout for login and registration
+- `login.component.scss`: Styles for auth forms
+
+### `src/app/pages/jotters/`
+
+- `jotters.component.ts`: Component managing user's notes (CRUD operations expected)
+- `jotters.component.html`: Layout for jotters page
+- `jotters.component.scss`: Styling for notes UI
+
+## Project Structure Summary
 
 ```
 src/
-├── app/
-│   ├── Components/
-│   │   ├── navbar/
-│   │   ├── search-bar/
-│   │   ├── jotter-card/
-│   │   └── login/
-│   ├── app.component.*
-│   ├── app.routes.ts
-│   └── app.config.ts
-├── styles.scss
 ├── index.html
-└── main.ts
+├── main.ts
+├── styles.scss
+└── app/
+    ├── app.component.*         # Root component
+    ├── app.routes.ts           # Routing setup
+    ├── app.config.ts           # Global config
+    ├── Components/
+    │   └── navbar/             # Sidebar navigation
+    └── pages/
+        ├── login/              # Authentication
+        └── jotters/            # Note-taking interface
 ```
 
----
+## Notes
 
-## 📄 License
-
-This project is open-source and free to use.
-
----
-
-## 👨‍💻 Author
-
-Built with 💚 by Yesu Kay
+- The project uses Angular's standalone components.
+- Routing dynamically shows or hides the sidebar based on the current route.
+- Custom validation and error handling are included in form controls.
