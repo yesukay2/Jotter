@@ -58,12 +58,9 @@
   </div>
 
   <div id="nav-cta-btn">
-    <div
-      id="user"
-      aria-label="User-icon"
-      aria-details="Manage authentication"
-      #userRef
-    ></div>
+    <div id="user" aria-label="User-icon" aria-details="Manage authentication">
+      <img src="/logout.svg" alt="" />
+    </div>
     <button
       id="show-presets"
       (click)="togglePresets()"
@@ -77,89 +74,33 @@
   <div class="presets hidden" #presetsMenu>
     <p class="presets-title">Preset Themes</p>
     <div class="theme-options">
-      <button id="default-theme" (click)="setDefaultTheme()">Default</button>
-      <button id="dark-theme" (click)="setDarkTheme()">Dark</button>
-      <button id="pink-theme" (click)="setOrangeTheme()">Pink</button>
+      <button
+        id="default-theme"
+        (click)="setDefaultTheme(); togglePresets()"
+      ></button>
+      <button
+        id="dark-theme"
+        (click)="setDarkTheme(); togglePresets()"
+      ></button>
+      <button
+        id="pink-theme"
+        (click)="setOrangeTheme(); togglePresets()"
+      ></button>
     </div>
     <div class="font-options">
-      <button id="default-font" (click)="setFont('font-sans-serif')">
+      <button
+        id="default-font"
+        (click)="setFont('font-sans-serif'); togglePresets()"
+      >
         Sans Serif
       </button>
-      <button id="serif-font" (click)="setFont('font-serif')">Serif</button>
-      <button id="sans-serif-font" (click)="setFont('font-monospace')">
-        Monospace
+      <button id="serif-font" (click)="setFont('font-serif'); togglePresets()">
+        Serif
       </button>
-    </div>
-  </div>
-</aside>
--->
-
-<aside class="sidebar">
-  <div class="sidebar-header">
-    <h2>Jotter</h2>
-  </div>
-
-  <nav>
-    <a
-      [routerLink]="['/jotters']"
-      routerLinkActive="active"
-      (click)="unfilteredState()"
-    >
-      <i class="icon">📝</i>
-      <span class="nav-title">All Jots</span>
-      <span class="count">{{ jotterCount }}</span>
-    </a>
-
-    <a [routerLink]="['/archived']" routerLinkActive="active">
-      <i class="icon">📦</i>
-      <span class="nav-title">Archived</span>
-      <span class="count">{{ archivedCount }}</span>
-    </a>
-
-    <a [routerLink]="['/jotter/new-jotter']">
-      <i class="icon plus-icon">+</i>
-      <span class="nav-title">Add New Jot</span>
-    </a>
-  </nav>
-
-  <div class="filters">
-    <h3>Filter by Tag</h3>
-    <div
-      *ngFor="let tag of tags"
-      class="tag-filter"
-      (click)="filterByTag(tag)"
-      tabindex="0"
-    >
-      <span>#{{ tag }}</span>
-      <span class="count">{{ getTagCount(tag) }}</span>
-    </div>
-  </div>
-
-  <div id="nav-cta-btn">
-    <div id="user" #userRef aria-label="User Profile Area"></div>
-    <button
-      id="show-presets"
-      (click)="togglePresets()"
-      aria-label="Toggle Presets"
-      #presets
-    >
-      <img src="/preset.png" alt="Preset icon" id="presets-image" />
-    </button>
-  </div>
-
-  <div class="presets hidden" #presetsMenu>
-    <p class="presets-title">Preset Themes</p>
-    <div class="theme-options">
-      <button id="default-theme" (click)="setDefaultTheme()">Default</button>
-      <button id="dark-theme" (click)="setDarkTheme()">Dark</button>
-      <button id="pink-theme" (click)="setOrangeTheme()">Pink</button>
-    </div>
-    <div class="font-options">
-      <button id="default-font" (click)="setFont('font-sans-serif')">
-        Sans Serif
-      </button>
-      <button id="serif-font" (click)="setFont('font-serif')">Serif</button>
-      <button id="monospace-font" (click)="setFont('font-monospace')">
+      <button
+        id="sans-serif-font"
+        (click)="setFont('font-monospace'); togglePresets()"
+      >
         Monospace
       </button>
     </div>
