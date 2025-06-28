@@ -5,6 +5,24 @@
   margin: 0%;
   position: fixed;
 }
+
+.sidebar-overlay {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .sidebar {
   position: relative;
   top: 0;
@@ -16,12 +34,30 @@
   display: flex;
   flex-direction: column;
   font-family: $font-family;
+  overflow-y: auto;
+  transform: translateX(-100%);
+
+  &.open {
+    transform: translateX(0);
+  }
+  transition: transform 0.3s ease-in-out;
 
   .sidebar-header {
+    display: flex;
+    align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 2rem;
     text-align: center;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
   }
 
   nav {
@@ -189,5 +225,33 @@
     background-color: $pink-primary;
     width: 1.5rem;
     height: 1.5rem;
+  }
+
+  @media (min-width: 721px) {
+    transform: translateX(0); // always show on large screens
+  }
+}
+@media (max-width: 720px) {
+  .sidebar {
+    transform: translateX(-100%);
+    &.open {
+      transform: translateX(16rem);
+    }
+
+    .close-btn {
+      display: block;
+      position: absolute;
+      top: 0.6rem;
+      right: 1rem;
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  .hamburger {
+    display: flex;
   }
 }

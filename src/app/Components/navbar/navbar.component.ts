@@ -140,6 +140,9 @@ import {
   ElementRef,
   HostListener,
   ViewChild,
+  Output,
+  EventEmitter,
+  Input,
   AfterViewInit,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -155,18 +158,20 @@ import { ClerkService } from '../../Service/clerk.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class NavbarComponent implements OnInit {
   protected userId?: string;
   protected jotterCount?: number;
   protected archivedCount: number = 0;
   protected tags?: string[];
+  // protected menuOpen: boolean = false;
 
   @ViewChild('presetsMenu') presetsMenu?: ElementRef;
   @ViewChild('presets') presets?: ElementRef;
-  @ViewChild('userRef') userRef?: ElementRef;
+  @Output() closeMenu = new EventEmitter<void>();
+  @Input() menuOpen: boolean = false;
 
   presetsVisible = false;
-  menuOpen = false;
+  // menuOpen = false;
 
   constructor(
     private authService: AuthService,
@@ -181,26 +186,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngOnInit(): void {}
-
-  ngAfterViewInit(): void {
-    // Defer Clerk mounting to ensure the DOM element is rendered
-    setTimeout(() => {
-      const userElement = this.userRef?.nativeElement;
-      if (userElement) {
-        this.clerkService.mountUserProfile(userElement);
-      } else {
-        console.error('UserRef DOM element not found for Clerk!');
-      }
-    }, 0); // delay by a tick to allow DOM paint
+  ngOnInit(): void {
+    this.mountUser();
   }
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  closeMenu() {
+  closeMenuBtn() {
     this.menuOpen = false;
+    this.closeMenu.emit(); // notify AppComponent to update its menuOpen state
   }
 
   filterByTag(tag: string) {
@@ -218,6 +210,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
   unfilteredState() {
     this.jotterService.resetTagFilterState();
+  }
+
+  mountUser() {
+    const el = document.getElementById('user') as HTMLDivElement;
+    console.log('from nav comp', this.clerkService.isSignedIn());
+    if (!this.clerkService.isSignedIn()) return;
+    this.clerkService.mountUserProfile(el);
   }
 
   setDefaultTheme() {
@@ -264,15 +263,9 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   setFont(fontClass: string) {
-    const fontClasses = [
-      'font-montserrat',
-      'font-sevillana',
-      'font-roboto-condensed',
-      'font-sans-serif',
-      'font-serif',
-      'font-monospace',
-    ];
-    fontClasses.forEach((fc) => document.body.classList.remove(fc));
-    document.body.classList.add(fontClass);
+    const body = document.body;
+    const fontClasses = ['font-sans-serif', 'font-serif', 'font-monospace'];
+    fontClasses.forEach((fc) => body.classList.remove(fc));
+    body.classList.add(fontClass);
   }
 }

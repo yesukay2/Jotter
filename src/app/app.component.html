@@ -1,5 +1,26 @@
 <div class="layout">
-  <app-navbar *ngIf="!isLoginRoute()"></app-navbar>
+  <button
+    class="hamburger"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen"
+    aria-label="Toggle Sidebar"
+    *ngIf="!menuOpen"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div
+    class="sidebar-overlay"
+    [class.show]="menuOpen"
+    (click)="menuOpen = false"
+  ></div>
+
+  <app-navbar
+    *ngIf="!isLoginRoute()"
+    [menuOpen]="menuOpen"
+    (closeMenu)="menuOpen = false"
+  ></app-navbar>
   <main class="main-content">
     <router-outlet />
   </main>
