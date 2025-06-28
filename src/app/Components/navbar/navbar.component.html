@@ -107,13 +107,13 @@
     >
       <i class="icon">📝</i>
       <span class="nav-title">All Jots</span>
-      <span class="count">{{ jotterCount ?? 0 }}</span>
+      <span class="count">{{ jotterCount }}</span>
     </a>
 
     <a [routerLink]="['/archived']" routerLinkActive="active">
       <i class="icon">📦</i>
       <span class="nav-title">Archived</span>
-      <span class="count">{{ archivedCount ?? 0 }}</span>
+      <span class="count">{{ archivedCount }}</span>
     </a>
 
     <a [routerLink]="['/jotter/new-jotter']">

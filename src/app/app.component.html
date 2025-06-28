@@ -4,7 +4,7 @@
     (click)="toggleMenu()"
     [attr.aria-expanded]="menuOpen"
     aria-label="Toggle Sidebar"
-    *ngIf="!menuOpen"
+    *ngIf="!menuOpen && !isLoginRoute()"
   >
     <span></span>
     <span></span>
@@ -21,7 +21,7 @@
     [menuOpen]="menuOpen"
     (closeMenu)="menuOpen = false"
   ></app-navbar>
-  <main class="main-content">
+  <main class="main-content" [class.no-sidebar]="isLoginRoute()">
     <router-outlet />
   </main>
 </div>
