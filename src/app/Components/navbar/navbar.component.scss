@@ -136,6 +136,15 @@
 
   #show-presets {
     border-radius: 0.3rem;
+    padding: 0.3rem 0.3rem;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.18);
+    }
   }
 
   #presets-image {
@@ -190,10 +199,21 @@
   }
 
   #user {
-    border: 1px solid black;
-    border-radius: 5rem;
-    background-color: white;
-    padding: 0.3rem;
+    border: none;
+    border-radius: 4rem;
+    background-color: $primary-color;
+    cursor: pointer;
+
+    padding: 0.5rem;
+
+    img {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+
+    &:hover {
+      transform: scale(1.18);
+    }
   }
 
   .theme-options {
@@ -206,6 +226,17 @@
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+
+  .theme-options button {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.6rem;
+    &:hover {
+      transform: scale(1.15);
     }
   }
 
