@@ -5,14 +5,12 @@ import { JotterListPageComponent } from './Pages/jotter-list-page/jotter-list-pa
 import { JotterPageComponent } from './Pages/jotter-page/jotter-page.component';
 import { ArchivedPageComponent } from './Pages/archived-page/archived-page.component';
 import { ConfirmDeleteComponent } from './Pages/confirm-delete/confirm-delete.component';
+import { LoginPageComponent } from './Pages/login-page/login-page.component';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./Pages/login-page/login-page.component').then(
-        (module) => module.LoginPageComponent
-      ),
+    component: LoginPageComponent,
   },
   {
     path: 'jotters',
@@ -43,6 +41,7 @@ export const routes: Routes = [
   {
     path: 'jotter/edit-jotter/confirm-delete/:id',
     component: ConfirmDeleteComponent,
+    // canActivate: [routeGuardGuard],
   },
   {
     path: '**',

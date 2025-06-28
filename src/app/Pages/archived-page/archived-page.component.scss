@@ -29,4 +29,8 @@
   border-radius: 0.5rem;
   background-color: lighten($bg-color, 5%);
   grid-column: 1 / -1;
+
+  @media (max-width: $breakpoint-tablet) {
+    margin-left: 0;
+  }
 }

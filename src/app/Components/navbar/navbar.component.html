@@ -1,13 +1,20 @@
-<aside class="sidebar">
+<div
+  class="sidebar-overlay"
+  [class.show]="menuOpen"
+  (click)="closeMenuBtn()"
+></div>
+
+<aside class="sidebar" [class.open]="menuOpen">
   <div class="sidebar-header">
     <h2>Jotter</h2>
+    <button class="close-btn" (click)="closeMenuBtn()">&times;</button>
   </div>
 
   <nav>
     <a
       [routerLink]="['/jotters']"
       routerLinkActive="active"
-      (click)="unfilteredState()"
+      (click)="unfilteredState(); closeMenuBtn()"
       aria-details="All Jotters"
     >
       <i class="icon">📝</i>
@@ -19,13 +26,18 @@
       [routerLink]="['/archived']"
       routerLinkActive="active"
       aria-details="Archived Jots"
+      (click)="closeMenuBtn()"
     >
       <i class="icon">📦</i>
       <span class="nav-title">Archived</span>
       <span class="count">{{ archivedCount }}</span>
     </a>
 
-    <a [routerLink]="['/jotter/new-jotter']" aria-details="Add New Jotter">
+    <a
+      [routerLink]="['/jotter/new-jotter']"
+      aria-details="Add New Jotter"
+      (click)="closeMenuBtn()"
+    >
       <i class="icon plus-icon">+</i>
       <span class="nav-title">Add New Jot</span>
     </a>
@@ -36,7 +48,7 @@
     <div
       *ngFor="let tag of tags"
       class="tag-filter"
-      (click)="filterByTag(tag)"
+      (click)="filterByTag(tag); closeMenuBtn()"
       tabindex="0"
       aria-label="tag-filter"
     >

@@ -17,19 +17,22 @@ export class ClerkService {
   async initialize(): Promise<void> {
     if (this.loaded) return;
 
-    await this.clerk.load();
+    await this.clerk.load().then(() => {
+      this.clerk.user &&
+        this.authService.setAuthenticatedUser(this.clerk.user.id);
 
-    if (this.clerk.user) {
-      this.authService.setAuthenticatedUser(this.clerk.user.id);
-    }
-
-    this.loaded = true;
+      this.loaded = true;
+    });
   }
 
   mountUserProfile(el: HTMLDivElement) {
     if (this.clerk.user) {
-      this.clerk.mountUserButton(el);
+      setTimeout(() => {
+        this.clerk.mountUserButton(el);
+      }, 5000);
+      return;
     }
+    console.log(this.clerk.user);
   }
 
   mountSignIn(el: HTMLDivElement) {

@@ -1,28 +1,162 @@
+// @use "variables" as *;
+
+// .layout {
+//   display: flex;
+//   position: relative;
+//   min-height: 100vh;
+// }
+
+// app-navbar {
+//   width: 250px;
+//   flex-shrink: 0;
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   bottom: 0;
+//   z-index: 1000;
+//   background-color: $secondary-color;
+
+//   transform: translateX(-100%);
+//   transition: transform 0.3s ease;
+
+//   &.open {
+//     transform: translateX(0);
+//   }
+// }
+
+// .main-content {
+//   margin-left: 250px;
+//   padding: 1rem;
+//   width: calc(100% - 250px);
+
+//   @media (max-width: $breakpoint-tablet) {
+//     margin-left: 0;
+//   }
+
+//   @media (min-width: $breakpoint-desktop) {
+//     margin-left: 15rem;
+//   }
+// }
+
+// .hamburger {
+//   position: fixed;
+//   top: 1rem;
+//   left: 1rem;
+//   z-index: 300;
+//   display: none;
+//   flex-direction: column;
+//   gap: 5px;
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+
+//   span {
+//     width: 25px;
+//     height: 3px;
+//     background: black;
+//     border-radius: 2px;
+//   }
+// }
+
+// @media (max-width: 720px) {
+//   .sidebar {
+//     transform: translateX(-100%);
+//     &.open {
+//       transform: translateX(0);
+//     }
+
+//     .close-btn {
+//       display: block;
+//     }
+//   }
+
+//   .hamburger {
+//     display: flex;
+//   }
+// }
+
 @use "variables" as *;
 
 .layout {
   display: flex;
+  flex-direction: row;
+  position: relative;
   min-height: 100vh;
 }
 
+/* Sidebar */
 app-navbar {
-  width: 250px;
+  width: 260px;
   flex-shrink: 0;
   position: fixed;
-  left: 0;
   top: 0;
-  bottom: 0;
-  z-index: 1000;
+  left: 0;
+  z-index: 1001;
+  height: 100vh;
   background-color: $secondary-color;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 721px) {
+    transform: translateX(0);
+  }
 }
 
+/* Main Content */
 .main-content {
-  margin-left: 250px; // must match navbar width
+  margin-left: 260px;
   padding: 1rem;
-  width: calc(100% - 250px);
+  width: calc(100% - 260px);
 
-  @media (max-width: $breakpoint-tablet) {
+  @media (max-width: 720px) {
     margin-left: 0;
+    margin-top: 1.5rem;
     width: 100%;
+  }
+}
+
+/* Hamburger Icon */
+.hamburger {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: black;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 720px) {
+    display: flex;
+  }
+}
+
+/* Overlay */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
   }
 }

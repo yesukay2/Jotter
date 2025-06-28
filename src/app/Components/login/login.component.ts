@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
     await this.clerkService.initialize();
     if (this.clerkService.isSignedIn()) {
       this.router.navigate(['/jotters']);
-    } else {
       const el = document.getElementById('sign-in') as HTMLDivElement;
       this.clerkService.mountSignIn(el);
     }

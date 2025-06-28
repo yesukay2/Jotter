@@ -4,6 +4,9 @@ import {
   ElementRef,
   HostListener,
   ViewChild,
+  Output,
+  EventEmitter,
+  Input,
 } from '@angular/core';
 import { RouterLink, TitleStrategy } from '@angular/router';
 import { AuthService } from '../../Service/auth.service';
@@ -22,9 +25,12 @@ export class NavbarComponent implements OnInit {
   protected jotterCount?: number;
   protected archivedCount: number = 0;
   protected tags?: string[];
+  // protected menuOpen: boolean = false;
 
   @ViewChild('presetsMenu') presetsMenu?: ElementRef;
   @ViewChild('presets') presets?: ElementRef;
+  @Output() closeMenu = new EventEmitter<void>();
+  @Input() menuOpen: boolean = false;
 
   presetsVisible: boolean = false;
 
@@ -46,14 +52,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.mountUser();
   }
-  menuOpen = false;
 
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  closeMenu() {
+  closeMenuBtn() {
     this.menuOpen = false;
+    this.closeMenu.emit(); // notify AppComponent to update its menuOpen state
   }
 
   filterByTag(tag: string) {
@@ -73,9 +75,10 @@ export class NavbarComponent implements OnInit {
   }
 
   mountUser() {
-    this.clerkService.mountUserProfile(
-      document.getElementById('user') as HTMLDivElement
-    );
+    const el = document.getElementById('user') as HTMLDivElement;
+    console.log('from nav comp', this.clerkService.isSignedIn());
+    if (!this.clerkService.isSignedIn()) return;
+    this.clerkService.mountUserProfile(el);
   }
 
   setDefaultTheme() {
@@ -130,15 +133,8 @@ export class NavbarComponent implements OnInit {
 
   setFont(fontClass: string) {
     const body = document.body;
-    const fontClasses = [
-      'font-montserrat',
-      'font-sevillana',
-      'font-roboto-condensed',
-    ];
-    // Remove all other font classes
+    const fontClasses = ['font-sans-serif', 'font-serif', 'font-monospace'];
     fontClasses.forEach((fc) => body.classList.remove(fc));
-
-    // Add selected font
     body.classList.add(fontClass);
   }
 }
